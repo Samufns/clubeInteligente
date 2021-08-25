@@ -13,9 +13,8 @@
 0000: 6F00000001000000 FFFF01000D004347 5458566965775374 6174650400010000
 0020: 0000000000180100 002C000000020000 0003000000FFFFFF FFFFFFFFFFF8FFFF
 0040: FFE1FFFFFF000000 00000000003C0600 00DE020000010000 0000000000010000
-0060: 000F4170706C6963 6174696F6E497465 6D04000000075769 6E646F7773116672
-0080: 6D43616444657362 72617661646F720D 4368696C64205769 6E646F77730C6466
-00A0: 4E617363696D656E 746F
+0060: 000F4170706C6963 6174696F6E497465 6D0400000007436C 61737365730A6344
+0080: 4256504553534F41 0946756E6374696F 6E730A496E697469 616C697A65
 .enddata
 .data DT_MAKERUNDLG
 0000: 0900001000000000 1B443A5C536F6E6E 65725C6664655C44 42565C6462766369
@@ -303,12 +302,7 @@
 .head 8 -  Call Reset( )
 .head 8 -  Set nID = nID_p
 .head 8 -  Call SqlPrepareAndExecute( hSqlParam,
-'Select ID,  CPFCGC,  NOME,  APELIDO,
-GENERO,  NASCIMENTO,  CADASTRO,  EMAIL,
-TELEFONE,  FOTO,  TIPOPESSOA,  STATUS
-Into  :nID,  :sCPFCGC,  :sNOME,  :sAPELIDO,
-:sGENERO,  :dtNASCIMENTO,  :dtCADASTRO,  :sEMAIL,
-:sTELEFONE,  :sFOTO,  :sTIPOPESSOA,  :sSTATUS
+'SELECT id, cpfcgc, nome, email into  :nID,  :sCPFCGC,  :sNome, :sEMAIL
 From DBVPESSOA
 Where ID = :nID_p' )
 .head 8 +  If SqlFetchNext( hSqlParam, nFetch )
@@ -1583,12 +1577,12 @@ Where ID = :nID ' )
 .enddata
 .head 4 -  Class Child Ref Key: 0
 .head 4 -  Class ChildKey: 0
-.head 4 -  Class: pcDataField
+.head 4 -  Class: pcDataFieldShowWhite
 .head 4 -  Property Template:
 .head 4 -  Class DLL Name:
 .head 4 -  Data
 .head 5 -  Maximum Data Length: Class Default
-.head 5 -  Data Type: Class Default
+.head 5 -  Data Type: String
 .head 5 -  Editable? Class Default
 .head 4 -  Display Settings
 .head 5 -  Window Location and Size
@@ -1642,7 +1636,7 @@ Where ID = :nID ' )
 .enddata
 .head 4 -  Class Child Ref Key: 0
 .head 4 -  Class ChildKey: 0
-.head 4 -  Class: pcDataField
+.head 4 -  Class: pcDataFieldShowWhite
 .head 4 -  Property Template:
 .head 4 -  Class DLL Name:
 .head 4 -  Data
@@ -1701,7 +1695,7 @@ Where ID = :nID ' )
 .enddata
 .head 4 -  Class Child Ref Key: 0
 .head 4 -  Class ChildKey: 0
-.head 4 -  Class: pcDataField
+.head 4 -  Class: pcDataFieldShowWhite
 .head 4 -  Property Template:
 .head 4 -  Class DLL Name:
 .head 4 -  Data
@@ -1760,12 +1754,12 @@ Where ID = :nID ' )
 .enddata
 .head 4 -  Class Child Ref Key: 0
 .head 4 -  Class ChildKey: 0
-.head 4 -  Class: pcDataField
+.head 4 -  Class: pcDataFieldShowWhite
 .head 4 -  Property Template:
 .head 4 -  Class DLL Name:
 .head 4 -  Data
 .head 5 -  Maximum Data Length: Class Default
-.head 5 -  Data Type: Class Default
+.head 5 -  Data Type: String
 .head 5 -  Editable? Class Default
 .head 4 -  Display Settings
 .head 5 -  Window Location and Size
@@ -2341,7 +2335,7 @@ Where ID = :nID ' )
 .enddata
 .head 4 -  Class Child Ref Key: 0
 .head 4 -  Class ChildKey: 0
-.head 4 -  Class: pcDataField
+.head 4 -  Class: pcDataFieldShowWhite
 .head 4 -  Property Template:
 .head 4 -  Class DLL Name:
 .head 4 -  Data
@@ -2374,7 +2368,7 @@ Where ID = :nID ' )
 .enddata
 .head 4 -  Class Child Ref Key: 0
 .head 4 -  Class ChildKey: 0
-.head 4 -  Class: pcDataField
+.head 4 -  Class: pcDataFieldShowWhite
 .head 4 -  Property Template:
 .head 4 -  Class DLL Name:
 .head 4 -  Data
@@ -2501,11 +2495,14 @@ Where ID = :nID ' )
 .head 4 -  Static Variables
 .head 4 -  Local variables
 .head 4 +  Actions
+.head 5 +  If oPessoa.Initialize( hSql, dfID )
+.head 6 -  Set dfID = oPessoa.nID
+.head 6 -  Set dfNome = oPessoa.sNOME
+.head 6 -  Set dfCPF = oPessoa.sCPFCGC
+.head 6 -  Set dfEmail = oPessoa.sEMAIL
 .head 5 +  If not ( dfID > 0 )
 .head 6 -  Call SalMsgErro( "Informe um ID válido" )
-.head 5 -  If oPessoa.Initialize( hSql, dfID )
 .head 5 -  Call SalSendMsg( hWndForm, PAM_RecordExist, 0, 0 )
-.head 5 -  Call SalSetFocus( dfNome )
 .head 2 -  Window Parameters
 .head 2 +  Window Variables
 .head 3 -  FunctionalVar: oPessoa
