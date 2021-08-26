@@ -11,10 +11,11 @@
 .head 1 +  Design-time Settings
 .data VIEWINFO
 0000: 6F00000001000000 FFFF01000D004347 5458566965775374 6174650400010000
-0020: 0000000000180100 002C000000020000 0003000000FFFFFF FFFFFFFFFFF8FFFF
+0020: 00000000001B0100 002C000000020000 0003000000FFFFFF FFFFFFFFFFF8FFFF
 0040: FFE1FFFFFF000000 00000000003C0600 00DE020000010000 0000000000010000
-0060: 000F4170706C6963 6174696F6E497465 6D0400000007436C 61737365730A6344
-0080: 4256504553534F41 0946756E6374696F 6E730A496E697469 616C697A65
+0060: 000F4170706C6963 6174696F6E497465 6D06000000075769 6E646F7773116672
+0080: 6D43616444657362 72617661646F720D 4368696C64205769 6E646F7773107462
+00A0: 6C45737065636961 6C69646164650743 6F6C756D6E730763 6F6C4E6F6D65
 .enddata
 .data DT_MAKERUNDLG
 0000: 0900001000000000 1B443A5C536F6E6E 65725C6664655C44 42565C6462766369
@@ -232,7 +233,7 @@
 .head 2 +  Internal Functions
 .head 2 -  Named Menus
 .head 2 +  Class Definitions
-.data RESOURCE 0 0 1 771210842
+.data RESOURCE 0 0 1 1045395460
 0000: 8E08000035040000 0000000000000000 0200001000FFFF01 00160000436C6173
 0020: 73566172004F7574 6C696E6552006567 496E666F5B003C00 000F700063446961
 0040: 6C6F674400656661 756C74D600C00000 0700000043040000 0002F8000000FF6F
@@ -245,16 +246,16 @@
 0120: 0000FFFF66190004 00ED0300FF3F0180 661D000300F80B70 63414B6579400000
 0140: F602009619000100 FE00FF9B190004B5 000300FFFF900180 0400000401001066
 0160: 6344424C00697374 614F626A6500746F 7322000000017A00 00046B0007000501
-0180: 8813000000FF2101 8019000005000000 000C70634D6F0075 7365576865656C04
+0180: 8E13000000FF2101 8019000005000000 000C70634D6F0075 7365576865656C04
 01A0: 220000010000006F 1900ED0100FF3F01 8006040006000000 00096663536F756E
-01C0: 640065782A000000 0100BD003AA10001 070000A001001A06 0000078001000000
+01C0: 640065782A000000 0100BD003AA10001 070000A001002006 0000078001000000
 01E0: FF98018004000721 0011634456550053 554152494F5F5644 657472220000F401
-0200: 0000D6040007EA00 0188FE0063018004 00840800000F6344 01434C5542455F56
-0220: 7F00F001000000D6 040007EA000188FE 0063018004008009 0000001063440741
-0240: 5353455FFFE00001 000000AD040007D5 000188FD00C70180 0400000A00000017
+0200: 0000D6040007EA00 018EFE0063018004 00840800000F6344 01434C5542455F56
+0220: 7F00F001000000D6 040007EA00018EFE 0063018004008009 0000001063440741
+0240: 5353455FFFE00001 000000AD040007D5 00018EFD00C70180 0400000A00000017
 0260: 6344034553504543 4900414C49444144 455FFFE000010000 00AD040007D50001
-0280: 88FD00C701800400 000B000000166344 FB55F1434C557F00 F001000000D60400
-02A0: 07EA000188FE0003 01800C000000840C 00000A6663016E4D 657465725EB00000
+0280: 8EFD00C701800400 000B000000166344 FB55F1434C557F00 F001000000D60400
+02A0: 07EA00018EFE0003 01800C000000840C 00000A6663016E4D 657465725EB00000
 02C0: 000300B70400F603 00FFDF04AC000400 03FD00FF37080004 6B000300FFFF0501
 02E0: 9D0000000D000000 000A5F457272006F 72426173658A01D8 00000D005B190001
 0300: FA0000FF6F1900D6 190001FE00FF8332 00000019B5000100 FFFF604B00000019
@@ -302,7 +303,7 @@
 .head 8 -  Call Reset( )
 .head 8 -  Set nID = nID_p
 .head 8 -  Call SqlPrepareAndExecute( hSqlParam,
-'SELECT id, cpfcgc, nome, email into  :nID,  :sCPFCGC,  :sNome, :sEMAIL
+'SELECT id, cpfcgc, left(nome,50), left(email,50) into  :nID,  :sCPFCGC,  :sNOME, :sEMAIL
 From DBVPESSOA
 Where ID = :nID_p' )
 .head 8 +  If SqlFetchNext( hSqlParam, nFetch )
@@ -630,6 +631,87 @@ Where ID = :nID ' )
 .head 6 +  Actions
 .head 7 -  Return TRUE
 .head 5 -  ! @CustomMethodsEnd
+.head 3 +  Functional Class: cDBVPESSOACLASSE
+.head 4 -  Description:
+.head 4 -  Derived From
+.head 4 -  Class Variables
+.head 4 +  Instance Variables
+.head 5 -  Number: nID
+.head 5 -  String: sCPFCGC
+.head 5 -  String: sNOME
+.head 5 -  String: sAPELIDO
+.head 5 -  String: sGENERO
+.head 5 -  Date/Time: dtNASCIMENTO
+.head 5 -  Date/Time: dtCADASTRO
+.head 5 -  String: sEMAIL
+.head 5 -  String: sTELEFONE
+.head 5 -  String: sFOTO
+.head 5 -  String: sTIPOPESSOA
+.head 5 -  String: sSTATUS
+.head 5 -  String: sNOMECLASSE
+.head 5 -  Number: nIDCLASSE
+.head 4 +  Functions
+.head 5 +  Function: PopulaClasse
+.head 6 -  Description:
+.head 6 -  Returns
+.head 6 +  Parameters
+.head 7 -  Number: nID_pc
+.head 7 -  Window Handle: wTBLCLASSE
+.head 7 -  Sql Handle: hSqlParam
+.head 6 -  Static Variables
+.head 6 +  Local variables
+.head 7 -  Number: nLinha
+.head 6 +  Actions
+.head 7 -  Call SalTblReset(wTBLCLASSE)
+.head 7 -  Set nLinha = SalTblInsertRow(wTBLCLASSE, TBL_MaxRow)
+.head 7 -  Call SqlPrepareAndExecute(hSql, "SELECT dbvclasse.id, left(dbvclasse.nome, 50) into  :nIDCLASSE, :sNOMECLASSE FROM dbvpessoaclasse join dbvclasse join dbvpessoa WHERE dbvpessoaclasse.idclasse = dbvclasse.id and 
+dbvpessoaclasse.idpessoa = 
+dbvpessoa.id 
+and 
+dbvpessoaclasse.idpessoa = :nID_pc")
+.head 7 +  While SqlFetchNext(hSql, nFetch)
+.head 8 -  Set nLinha = SalTblInsertRow(wTBLCLASSE, TBL_MaxRow)
+.head 7 -  Call SalTblDeleteRow(wTBLCLASSE,nLinha,TBL_NoAdjust)
+.head 3 +  Functional Class: cDBVPESSOAESPEC
+.head 4 -  Description:
+.head 4 -  Derived From
+.head 4 -  Class Variables
+.head 4 +  Instance Variables
+.head 5 -  Number: nID
+.head 5 -  String: sCPFCGC
+.head 5 -  String: sNOME
+.head 5 -  String: sAPELIDO
+.head 5 -  String: sGENERO
+.head 5 -  Date/Time: dtNASCIMENTO
+.head 5 -  Date/Time: dtCADASTRO
+.head 5 -  String: sEMAIL
+.head 5 -  String: sTELEFONE
+.head 5 -  String: sFOTO
+.head 5 -  String: sTIPOPESSOA
+.head 5 -  String: sSTATUS
+.head 5 -  String: sNOMEESPEC
+.head 5 -  Number: nIDESPEC
+.head 5 -  String: sCODIGOESPEC
+.head 4 +  Functions
+.head 5 +  Function: PopulaEspecialidade
+.head 6 -  Description:
+.head 6 -  Returns
+.head 6 +  Parameters
+.head 7 -  Window Handle: wTBLESPEC
+.head 7 -  Number: nID_pc
+.head 7 -  Sql Handle: hSqlParam
+.head 6 -  Static Variables
+.head 6 +  Local variables
+.head 7 -  Number: nLinha
+.head 6 +  Actions
+.head 7 -  Call SalTblReset( wTBLESPEC)
+.head 7 -  Set nLinha = SalTblInsertRow( wTBLESPEC, TBL_MaxRow)
+.head 7 -  Call SqlPrepareAndExecute(hSql, "SELECT  dbvespecialidade.id, left(dbvespecialidade.nome,50), dbvespecialidade.codigo into :nIDESPEC, :sNOMEESPEC, :sCODIGOESPEC FROM dbvpessoaespec join dbvespecialidade join dbvpessoa WHERE 
+dbvpessoaespec.idespecialidade = 
+dbvespecialidade.id and dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespec.idpessoa = :nID_pc")
+.head 7 +  While SqlFetchNext(hSql, nFetch)
+.head 8 -  Set nLinha = SalTblInsertRow( wTBLESPEC, TBL_MaxRow)
+.head 7 -  Call SalTblDeleteRow( wTBLESPEC,nLinha,TBL_NoAdjust)
 .head 2 +  Default Classes
 .head 3 -  MDI Window: cBaseMDI
 .head 3 -  Form Window:
@@ -1623,6 +1705,25 @@ Where ID = :nID ' )
 .head 4 -  Font Enhancement: Default
 .head 4 -  Text Color: Default
 .head 4 -  Background Color: Default
+.head 3 -  Background Text: Apelido
+.head 4 -  Resource Id: 36948
+.head 4 -  Class Child Ref Key: 0
+.head 4 -  Class ChildKey: 0
+.head 4 -  Class:
+.head 4 -  Window Location and Size
+.head 5 -  Left: 0.483"
+.head 5 -  Top: 1.452"
+.head 5 -  Width:  0.8"
+.head 5 -  Width Editable? Yes
+.head 5 -  Height: 0.167"
+.head 5 -  Height Editable? Yes
+.head 4 -  Visible? Yes
+.head 4 -  Justify: Left
+.head 4 -  Font Name: Default
+.head 4 -  Font Size: Default
+.head 4 -  Font Enhancement: Default
+.head 4 -  Text Color: Default
+.head 4 -  Background Color: Default
 .head 3 +  Data Field: dfApelido
 .data CLASSPROPSSIZE
 0000: 2300
@@ -1663,25 +1764,6 @@ Where ID = :nID ' )
 .head 5 -  Background Color: Class Default
 .head 5 -  Input Mask: Class Default
 .head 4 -  Message Actions
-.head 3 -  Background Text: Apelido
-.head 4 -  Resource Id: 36948
-.head 4 -  Class Child Ref Key: 0
-.head 4 -  Class ChildKey: 0
-.head 4 -  Class:
-.head 4 -  Window Location and Size
-.head 5 -  Left: 0.483"
-.head 5 -  Top: 1.452"
-.head 5 -  Width:  0.8"
-.head 5 -  Width Editable? Yes
-.head 5 -  Height: 0.167"
-.head 5 -  Height Editable? Yes
-.head 4 -  Visible? Yes
-.head 4 -  Justify: Left
-.head 4 -  Font Name: Default
-.head 4 -  Font Size: Default
-.head 4 -  Font Enhancement: Default
-.head 4 -  Text Color: Default
-.head 4 -  Background Color: Default
 .head 3 +  Data Field: dfNascimento
 .data CLASSPROPSSIZE
 0000: 2300
@@ -1909,7 +1991,7 @@ Where ID = :nID ' )
 .head 6 -  Visible? No
 .head 6 -  Editable? Class Default
 .head 6 -  Maximum Data Length: Class Default
-.head 6 -  Data Type: Class Default
+.head 6 -  Data Type: Number
 .head 6 -  Justify: Class Default
 .head 6 -  Width:  Class Default
 .head 6 -  Width Editable? Class Default
@@ -1950,7 +2032,7 @@ Where ID = :nID ' )
 .head 6 -  Visible? Class Default
 .head 6 -  Editable? No
 .head 6 -  Maximum Data Length: Class Default
-.head 6 -  Data Type: Class Default
+.head 6 -  Data Type: String
 .head 6 -  Justify: Class Default
 .head 6 -  Width:  Class Default
 .head 6 -  Width Editable? Class Default
@@ -1991,7 +2073,7 @@ Where ID = :nID ' )
 .head 6 -  Visible? Class Default
 .head 6 -  Editable? No
 .head 6 -  Maximum Data Length: Class Default
-.head 6 -  Data Type: Class Default
+.head 6 -  Data Type: String
 .head 6 -  Justify: Class Default
 .head 6 -  Width:  4.16"
 .head 6 -  Width Editable? Class Default
@@ -2077,18 +2159,18 @@ Where ID = :nID ' )
 .head 6 -  Property Template:
 .head 6 -  Class DLL Name:
 .head 6 -  Title: ID
-.head 6 -  Visible? No
-.head 6 -  Editable? Class Default
-.head 6 -  Maximum Data Length: Class Default
-.head 6 -  Data Type: Class Default
-.head 6 -  Justify: Class Default
+.head 6 -  Visible? Yes
+.head 6 -  Editable? No
+.head 6 -  Maximum Data Length: Default
+.head 6 -  Data Type: Number
+.head 6 -  Justify: Left
 .head 6 -  Width:  Class Default
 .head 6 -  Width Editable? Class Default
-.head 6 -  Format: Class Default
+.head 6 -  Format: Unformatted
 .head 6 -  Country: Class Default
-.head 6 -  Input Mask: Class Default
+.head 6 -  Input Mask: Unformatted
 .head 6 -  Cell Options
-.head 7 -  Cell Type? Class Default
+.head 7 -  Cell Type? Standard
 .head 7 -  Multiline Cell? Class Default
 .head 7 -  Cell DropDownList
 .head 8 -  Sorted? Class Default
@@ -2118,18 +2200,18 @@ Where ID = :nID ' )
 .head 6 -  Property Template:
 .head 6 -  Class DLL Name:
 .head 6 -  Title: Classe
-.head 6 -  Visible? Class Default
+.head 6 -  Visible? Yes
 .head 6 -  Editable? No
-.head 6 -  Maximum Data Length: Class Default
-.head 6 -  Data Type: Class Default
-.head 6 -  Justify: Class Default
-.head 6 -  Width:  4.37"
+.head 6 -  Maximum Data Length: Default
+.head 6 -  Data Type: String
+.head 6 -  Justify: Left
+.head 6 -  Width:  4.35"
 .head 6 -  Width Editable? Class Default
-.head 6 -  Format: Class Default
+.head 6 -  Format: Unformatted
 .head 6 -  Country: Class Default
-.head 6 -  Input Mask: Class Default
+.head 6 -  Input Mask: Unformatted
 .head 6 -  Cell Options
-.head 7 -  Cell Type? Class Default
+.head 7 -  Cell Type? Standard
 .head 7 -  Multiline Cell? Class Default
 .head 7 -  Cell DropDownList
 .head 8 -  Sorted? Class Default
@@ -2142,14 +2224,7 @@ Where ID = :nID ' )
 .head 8 -  Ignore Case? Class Default
 .head 6 -  List Values
 .head 6 -  Message Actions
-.head 4 +  Functions
-.head 5 +  Function: Popula
-.head 6 -  Description:
-.head 6 -  Returns
-.head 6 -  Parameters
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 -  Actions
+.head 4 -  Functions
 .head 4 -  Window Variables
 .head 4 -  Message Actions
 .head 3 -  Group Box: Classes
@@ -2239,7 +2314,9 @@ Where ID = :nID ' )
 .head 4 -  Image Style: Class Default
 .head 4 -  Text Color: Class Default
 .head 4 -  Background Color: Class Default
-.head 4 -  Message Actions
+.head 4 +  Message Actions
+.head 5 +  On SAM_Click
+.head 6 -  Call SalTblInsertRow(tblClasse, TBL_MaxRow)
 .head 3 +  Pushbutton: pbExcluiClasse
 .data CLASSPROPSSIZE
 0000: 2300
@@ -2473,40 +2550,43 @@ Where ID = :nID ' )
 .head 5 +  Else
 .head 6 -  Set oPessoa.nID = dfID
 .head 6 -  Set nOperacao = DB_Insert
-.head 5 -  Set oPessoa.sNOME = dfNome
-.head 5 -  Set oPessoa.sCPFCGC = dfCPF
-.head 5 -  Set oPessoa.sAPELIDO = dfApelido
-.head 5 -  Set oPessoa.dtNASCIMENTO = dfNascimento
-.head 5 -  Set oPessoa.sEMAIL = dfEmail
-.head 5 -  Set oPessoa.sTELEFONE = dfTelefone
-.head 5 +  If rbMasculino = TRUE
-.head 6 -  Set oPessoa.sGENERO = 'M'
-.head 5 +  Else
-.head 6 -  Set oPessoa.sGENERO = 'F'
-.head 5 +  If cbStatus = TRUE
-.head 6 -  Set oPessoa.sSTATUS = '1'
-.head 5 +  Else
-.head 6 -  Set oPessoa.sSTATUS = '0'
+.head 5 -  Set oPessoaClasse.nIDCLASSE = tblClasse.colID
+.head 5 -  Set oPessoaClasse.sNOMECLASSE = tblClasse.colNome
+.head 5 -  Set oPessoaEspec.nIDESPEC = tblEspecialidade.colID
+.head 5 -  Set oPessoaEspec.sNOMEESPEC = tblEspecialidade.colNome
+.head 5 -  Set oPessoaEspec.sCODIGOESPEC = tblEspecialidade.colCodigo
 .head 5 -  Call oPessoa.FazOperacaoDB( hSql, DB_Insert )
 .head 3 +  Function: fcOk
 .head 4 -  Description:
 .head 4 -  Returns
 .head 4 -  Parameters
 .head 4 -  Static Variables
-.head 4 -  Local variables
+.head 4 +  Local variables
+.head 5 -  Number: nLinha
 .head 4 +  Actions
+.head 5 +  If not ( dfID > 0 )
+.head 6 -  Call SalMsgErro( "Informe um ID válido" )
 .head 5 +  If oPessoa.Initialize( hSql, dfID )
 .head 6 -  Set dfID = oPessoa.nID
 .head 6 -  Set dfNome = oPessoa.sNOME
 .head 6 -  Set dfCPF = oPessoa.sCPFCGC
 .head 6 -  Set dfEmail = oPessoa.sEMAIL
-.head 5 +  If not ( dfID > 0 )
-.head 6 -  Call SalMsgErro( "Informe um ID válido" )
+.head 5 +  If oPessoaClasse.PopulaClasse( dfID, tblClasse, hSql)
+.head 6 -  Set tblClasse.colID = oPessoaClasse.nIDCLASSE
+.head 6 -  Set tblClasse.colNome = oPessoaClasse.sNOMECLASSE
+.head 5 +  If oPessoaEspec.PopulaEspecialidade( tblEspecialidade, dfID, hSql)
+.head 6 -  Set tblEspecialidade.colID = oPessoaEspec.nIDESPEC
+.head 6 -  Set tblEspecialidade.colNome = oPessoaEspec.sNOMEESPEC
+.head 6 -  Set tblEspecialidade.colCodigo = oPessoaEspec.sCODIGOESPEC
 .head 5 -  Call SalSendMsg( hWndForm, PAM_RecordExist, 0, 0 )
 .head 2 -  Window Parameters
 .head 2 +  Window Variables
 .head 3 -  FunctionalVar: oPessoa
 .head 4 -  Class: cDBVPESSOA
+.head 3 -  FunctionalVar: oPessoaClasse
+.head 4 -  Class: cDBVPESSOACLASSE
+.head 3 -  FunctionalVar: oPessoaEspec
+.head 4 -  Class: cDBVPESSOAESPEC
 .head 2 -  Message Actions
 .head 1 +  Dialog Box: dlgLogin
 .head 2 -  Class: pcDialogDefault
