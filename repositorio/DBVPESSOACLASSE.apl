@@ -237,15 +237,14 @@
 0380: 057B00194B000100 00FFFFCD190019DA 000100FF7F32B300 1900F60100FFDF4B
 03A0: AC00190001FD00FF 376400196B000100 FFFF01
 .enddata
-.head 3 +  Functional Class: cDBVPESSOAESPEC
+.head 3 +  Functional Class: cDBVPESSOACLASSE
 .head 4 -  Description:
 .head 4 +  Derived From
 .head 5 -  Class: fcDBObjeto
 .head 4 -  Class Variables
 .head 4 +  Instance Variables
-.head 5 -  Number: nID
 .head 5 -  Number: nIDPESSOA
-.head 5 -  Number: nIDESPECIALIDADE
+.head 5 -  Number: nIDCLASSE
 .head 5 -  Date/Time: dtCONDECORACAO
 .head 5 -  String: sINSTRUTOR
 .head 4 +  Functions
@@ -255,20 +254,18 @@
 .head 7 -  Boolean:
 .head 6 +  Parameters
 .head 7 -  Sql Handle: hSqlParam
-.head 7 -  Number: nID_p
+.head 7 -  Number: nIDPESSOA_p
 .head 6 -  Static Variables
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 +  If Not bInitialized Or nID != nID_p
+.head 7 +  If Not bInitialized Or nIDPESSOA != nIDPESSOA_p
 .head 8 -  Call Reset( )
-.head 8 -  Set nID = nID_p
+.head 8 -  Set nIDPESSOA = nIDPESSOA_p
 .head 8 -  Call SqlPrepareAndExecute( hSqlParam, 
-'Select ID,  IDPESSOA,  IDESPECIALIDADE,  CONDECORACAO,
-INSTRUTOR
-Into  :nID,  :nIDPESSOA,  :nIDESPECIALIDADE,  :dtCONDECORACAO,
-:sINSTRUTOR 
-From DBVPESSOAESPEC 
-Where ID = :nID_p' )
+'Select IDPESSOA,  IDCLASSE,  CONDECORACAO,  INSTRUTOR
+Into  :nIDPESSOA,  :nIDCLASSE,  :dtCONDECORACAO,  :sINSTRUTOR 
+From DBVPESSOACLASSE 
+Where IDPESSOA = :nIDPESSOA_p' )
 .head 8 +  If SqlFetchNext( hSqlParam, nFetch )
 .head 9 -  Set sINSTRUTOR = SalStrTrimX( sINSTRUTOR )
 .head 9 -  Set bInitialized = TRUE
@@ -286,9 +283,8 @@ Where ID = :nID_p' )
 .head 6 -  Static Variables
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 -  Set nID = NUMBER_Null
 .head 7 -  Set nIDPESSOA = NUMBER_Null
-.head 7 -  Set nIDESPECIALIDADE = NUMBER_Null
+.head 7 -  Set nIDCLASSE = NUMBER_Null
 .head 7 -  Set dtCONDECORACAO = DATETIME_Null
 .head 7 -  Set sINSTRUTOR = STRING_Null
 .head 7 -  Set bInitialized = FALSE
@@ -298,13 +294,12 @@ Where ID = :nID_p' )
 .head 6 -  Returns
 .head 6 +  Parameters
 .head 7 -  FunctionalVar: oOrigem_p
-.head 8 -  Class: cDBVPESSOAESPEC
+.head 8 -  Class: cDBVPESSOACLASSE
 .head 6 -  Static Variables
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 -  Set nID = oOrigem_p.nID
 .head 7 -  Set nIDPESSOA = oOrigem_p.nIDPESSOA
-.head 7 -  Set nIDESPECIALIDADE = oOrigem_p.nIDESPECIALIDADE
+.head 7 -  Set nIDCLASSE = oOrigem_p.nIDCLASSE
 .head 7 -  Set dtCONDECORACAO = oOrigem_p.dtCONDECORACAO
 .head 7 -  Set sINSTRUTOR = oOrigem_p.sINSTRUTOR
 .head 7 -  Set bInitialized = FALSE
@@ -323,12 +318,10 @@ Where ID = :nID_p' )
 .head 8 +  When SqlError
 .head 9 -  Set bUpdate = TRUE
 .head 9 -  Return FALSE
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into DBVPESSOAESPEC 
-( ID,  IDPESSOA,  IDESPECIALIDADE,  CONDECORACAO,
-INSTRUTOR )
+.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into DBVPESSOACLASSE 
+( IDPESSOA,  IDCLASSE,  CONDECORACAO,  INSTRUTOR )
  Values 
-( :nID,  :nIDPESSOA,  :nIDESPECIALIDADE,  :dtCONDECORACAO,
-:sINSTRUTOR ) ' )
+( :nIDPESSOA,  :nIDCLASSE,  :dtCONDECORACAO,  :sINSTRUTOR ) ' )
 .head 8 +  If bUpdate
 .head 9 -  Call Update( hSqlParam )
 .head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
@@ -346,12 +339,10 @@ INSTRUTOR )
 .head 6 +  Actions
 .head 7 +  If VerificaCampos() And VerificaCamposCustom( )
 .head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into DBVPESSOAESPEC 
-( ID,  IDPESSOA,  IDESPECIALIDADE,  CONDECORACAO,
-INSTRUTOR )
+.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into DBVPESSOACLASSE 
+( IDPESSOA,  IDCLASSE,  CONDECORACAO,  INSTRUTOR )
  Values 
-( :nID,  :nIDPESSOA,  :nIDESPECIALIDADE,  :dtCONDECORACAO,
-:sINSTRUTOR ) ' )
+( :nIDPESSOA,  :nIDCLASSE,  :dtCONDECORACAO,  :sINSTRUTOR ) ' )
 .head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
 .head 8 -  Return TRUE
 .head 7 +  Else
@@ -367,8 +358,8 @@ INSTRUTOR )
 .head 6 +  Actions
 .head 7 +  If VerificaDependencias() And VerificaDependenciasCustom( hSqlParam )
 .head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Delete From DBVPESSOAESPEC
-Where ID = :nID' )
+.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Delete From DBVPESSOACLASSE
+Where IDPESSOA = :nIDPESSOA' )
 .head 8 -  Call DeleteDependencies( hSqlParam )
 .head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
 .head 8 -  Call Reset( )
@@ -386,12 +377,11 @@ Where ID = :nID' )
 .head 6 +  Actions
 .head 7 +  If VerificaCampos() And VerificaCamposCustom( )
 .head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Update DBVPESSOAESPEC
-Set IDPESSOA = :nIDPESSOA,
-IDESPECIALIDADE = :nIDESPECIALIDADE,
+.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Update DBVPESSOACLASSE
+Set IDCLASSE = :nIDCLASSE,
 CONDECORACAO = :dtCONDECORACAO,
 INSTRUTOR = :sINSTRUTOR 
-Where ID = :nID ' )
+Where IDPESSOA = :nIDPESSOA ' )
 .head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
 .head 8 -  Return TRUE
 .head 7 +  Else
@@ -417,7 +407,7 @@ Where ID = :nID ' )
 .head 6 -  Static Variables
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 -  Return 'cDBVPESSOAESPEC'
+.head 7 -  Return 'cDBVPESSOACLASSE'
 .head 5 +  Function: FazOperacaoDB
 .head 6 -  Description:
 .head 6 +  Returns
@@ -454,15 +444,13 @@ Where ID = :nID ' )
 .head 7 -  String: sFuncao
 .head 6 +  Actions
 .head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'ID\', 0, ' || SalNumberToStrX( nID, 7 )  || '  )'  )
+ values (:sSistemaGlobal, :nSeqNo, \'IDPESSOA\', 0, ' || SalNumberToStrX( nIDPESSOA, 7 )  || '  )'  )
 .head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'IDPESSOA\', 1, ' || SalNumberToStrX( nIDPESSOA, 7 )  || '  )'  )
+ values (:sSistemaGlobal, :nSeqNo, \'IDCLASSE\', 1, ' || SalNumberToStrX( nIDCLASSE, 7 )  || '  )'  )
 .head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'IDESPECIALIDADE\', 2, ' || SalNumberToStrX( nIDESPECIALIDADE, 7 )  || '  )'  )
+ values (:sSistemaGlobal, :nSeqNo, \'CONDECORACAO\', 2, ' || SalFmtFormatDateTime( dtCONDECORACAO, 'yyyyMMddhhhhmmss' )  || '  )'  )
 .head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'CONDECORACAO\', 3, ' || SalFmtFormatDateTime( dtCONDECORACAO, 'yyyyMMddhhhhmmss' )  || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'INSTRUTOR\', 4, ' || sINSTRUTOR || '  )'  )
+ values (:sSistemaGlobal, :nSeqNo, \'INSTRUTOR\', 3, ' || sINSTRUTOR || '  )'  )
 .head 7 -  Return TRUE
 .head 5 +  Function: GetMaxID
 .head 6 -  Description:
@@ -474,7 +462,7 @@ Where ID = :nID ' )
 .head 6 +  Local variables
 .head 7 -  Number: nMAXID
 .head 6 +  Actions
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Select MAX(ID) Into :nMAXID From DBVPESSOAESPEC' )
+.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Select MAX(ID) Into :nMAXID From DBVPESSOACLASSE' )
 .head 7 -  Call SqlFetchNext( hSqlParam, nFetch )
 .head 7 -  Return isNullNumber(nMAXID,0)
 .head 5 +  Function: GetNextID
@@ -523,7 +511,7 @@ Where ID = :nID ' )
 .head 6 +  Actions
 .head 7 -  Return TRUE
 .head 5 -  ! @CustomMethodsEnd
-.head 3 +  Functional Class: cDBVPESSOAESPEC_Vetor
+.head 3 +  Functional Class: cDBVPESSOACLASSE_Vetor
 .head 4 -  Description:
 .head 4 +  Derived From
 .head 5 -  Class: fcDBListaObjetos
@@ -531,8 +519,8 @@ Where ID = :nID ' )
 .head 4 +  Instance Variables
 .head 5 -  String: sOrdemCampos
 .head 5 -  String: saAtributosXML[*,2]
-.head 5 -  FunctionalVar: oDBVPESSOAESPEC[*]
-.head 6 -  Class: cDBVPESSOAESPEC
+.head 5 -  FunctionalVar: oDBVPESSOACLASSE[*]
+.head 6 -  Class: cDBVPESSOACLASSE
 .head 4 +  Functions
 .head 5 +  Function: Reset
 .head 6 -  Description:
@@ -541,9 +529,9 @@ Where ID = :nID ' )
 .head 6 -  Static Variables
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 -  Call SalArraySetUpperBound( oDBVPESSOAESPEC , 1, -1 )
+.head 7 -  Call SalArraySetUpperBound( oDBVPESSOACLASSE , 1, -1 )
 .head 7 +  If sOrdemCampos = ''
-.head 8 -  Set sOrdemCampos = ' ID '
+.head 8 -  Set sOrdemCampos = ' IDPESSOA '
 .head 7 -  Set bInitialized = FALSE
 .head 7 -  Return TRUE
 .head 5 +  Function: Select
@@ -564,11 +552,10 @@ Where ID = :nID ' )
 .head 7 +  If nTopResultados+0 > 0
 .head 8 -  Set sTop = ' Top ' || SalNumberToStrX( nTopResultados, 0 )
 .head 7 -  Call SqlPrepareAndExecute( hSqlParam, '
-Select ID,  IDPESSOA,  IDESPECIALIDADE,  CONDECORACAO,
-INSTRUTOR
-Into  :oDBVPESSOAESPEC[nInd].nID,  :oDBVPESSOAESPEC[nInd].nIDPESSOA,  :oDBVPESSOAESPEC[nInd].nIDESPECIALIDADE,
-:oDBVPESSOAESPEC[nInd].dtCONDECORACAO,  :oDBVPESSOAESPEC[nInd].sINSTRUTOR 
-From DBVPESSOAESPEC ' || sWhere || ' 
+Select IDPESSOA,  IDCLASSE,  CONDECORACAO,  INSTRUTOR
+Into  :oDBVPESSOACLASSE[nInd].nIDPESSOA,  :oDBVPESSOACLASSE[nInd].nIDCLASSE,  :oDBVPESSOACLASSE[nInd].dtCONDECORACAO,
+:oDBVPESSOACLASSE[nInd].sINSTRUTOR 
+From DBVPESSOACLASSE ' || sWhere || ' 
 Order By ' || sOrdemCampos )
 .head 7 +  While SqlFetchNext( hSqlParam, nFetch )
 .head 8 -  Set nInd = nInd + 1
@@ -592,7 +579,7 @@ Order By ' || sOrdemCampos )
 .head 7 -  Call SqlPrepareAndExecute( hSqlParam, '
 Select Count(*)
 into :nCount
-From DBVPESSOAESPEC ' || sWhere )
+From DBVPESSOACLASSE ' || sWhere )
 .head 7 -  Call SqlFetchNext( hSqlParam, nFetch )
 .head 7 -  Return nCount
 .head 5 +  Function: SetClassVarNameValue
@@ -606,16 +593,14 @@ From DBVPESSOAESPEC ' || sWhere )
 .head 6 -  Static Variables
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 +  If sNomeVar = 'nID'
-.head 8 -  Set oDBVPESSOAESPEC[nVetorPos].nID = SalStrToNumber( sValor )
-.head 7 +  Else If sNomeVar = 'nIDPESSOA'
-.head 8 -  Set oDBVPESSOAESPEC[nVetorPos].nIDPESSOA = SalStrToNumber( sValor )
-.head 7 +  Else If sNomeVar = 'nIDESPECIALIDADE'
-.head 8 -  Set oDBVPESSOAESPEC[nVetorPos].nIDESPECIALIDADE = SalStrToNumber( sValor )
+.head 7 +  If sNomeVar = 'nIDPESSOA'
+.head 8 -  Set oDBVPESSOACLASSE[nVetorPos].nIDPESSOA = SalStrToNumber( sValor )
+.head 7 +  Else If sNomeVar = 'nIDCLASSE'
+.head 8 -  Set oDBVPESSOACLASSE[nVetorPos].nIDCLASSE = SalStrToNumber( sValor )
 .head 7 +  Else If sNomeVar = 'dtCONDECORACAO'
-.head 8 -  Set oDBVPESSOAESPEC[nVetorPos].dtCONDECORACAO = FormataDataLida( sValor) 
+.head 8 -  Set oDBVPESSOACLASSE[nVetorPos].dtCONDECORACAO = FormataDataLida( sValor) 
 .head 7 +  Else If sNomeVar = 'sINSTRUTOR'
-.head 8 -  Set oDBVPESSOAESPEC[nVetorPos].sINSTRUTOR = sValor
+.head 8 -  Set oDBVPESSOACLASSE[nVetorPos].sINSTRUTOR = sValor
 .head 7 -  Return TRUE
 .head 5 +  Function: GetClassVarNameValue
 .head 6 -  Description:
@@ -630,16 +615,14 @@ From DBVPESSOAESPEC ' || sWhere )
 .head 8 -  Class: Variant
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 +  If sNomeVar = 'nID'
-.head 8 -  Call vParamExport.SetNumber( oDBVPESSOAESPEC[nVetorPos].nID , VT_R8 )
-.head 7 +  Else If sNomeVar = 'nIDPESSOA'
-.head 8 -  Call vParamExport.SetNumber( oDBVPESSOAESPEC[nVetorPos].nIDPESSOA , VT_R8 )
-.head 7 +  Else If sNomeVar = 'nIDESPECIALIDADE'
-.head 8 -  Call vParamExport.SetNumber( oDBVPESSOAESPEC[nVetorPos].nIDESPECIALIDADE , VT_R8 )
+.head 7 +  If sNomeVar = 'nIDPESSOA'
+.head 8 -  Call vParamExport.SetNumber( oDBVPESSOACLASSE[nVetorPos].nIDPESSOA , VT_R8 )
+.head 7 +  Else If sNomeVar = 'nIDCLASSE'
+.head 8 -  Call vParamExport.SetNumber( oDBVPESSOACLASSE[nVetorPos].nIDCLASSE , VT_R8 )
 .head 7 +  Else If sNomeVar = 'dtCONDECORACAO'
-.head 8 -  Call vParamExport.SetDate( oDBVPESSOAESPEC[nVetorPos].dtCONDECORACAO)
+.head 8 -  Call vParamExport.SetDate( oDBVPESSOACLASSE[nVetorPos].dtCONDECORACAO)
 .head 7 +  Else If sNomeVar = 'sINSTRUTOR'
-.head 8 -  Call vParamExport.SetString( oDBVPESSOAESPEC[nVetorPos].sINSTRUTOR)
+.head 8 -  Call vParamExport.SetString( oDBVPESSOACLASSE[nVetorPos].sINSTRUTOR)
 .head 7 -  Return vParamExport
 .head 5 +  Function: GetClassName
 .head 6 -  Description:
@@ -649,7 +632,7 @@ From DBVPESSOAESPEC ' || sWhere )
 .head 6 -  Static Variables
 .head 6 -  Local variables
 .head 6 +  Actions
-.head 7 -  Return 'cDBVPESSOAESPEC'
+.head 7 -  Return 'cDBVPESSOACLASSE'
 .head 5 +  Function: ConditionOk
 .head 6 -  Description:
 .head 6 +  Returns
@@ -670,7 +653,7 @@ From DBVPESSOAESPEC ' || sWhere )
 .head 6 +  Actions
 .head 7 -  Set nIndice = VisArrayFindString( sColunasLog, sColuna )
 .head 7 +  If nIndice >= 0
-.head 8 -  Set sCondicao = VisStrSubstitute( sConditionsLog[nIndice], '%COLUNA', 'oDBVPESSOAESPEC[ nVetorPos ].' || sColuna )
+.head 8 -  Set sCondicao = VisStrSubstitute( sConditionsLog[nIndice], '%COLUNA', 'oDBVPESSOACLASSE[ nVetorPos ].' || sColuna )
 .head 8 -  Call SalCompileAndEvaluate( sCondicao, nError, nErrorPos, nReturn, sReturn, dtReturn, hWndReturn, TRUE, SalContextCurrent( ) )
 .head 8 -  Return nReturn
 .head 7 +  Else
@@ -687,11 +670,11 @@ From DBVPESSOAESPEC ' || sWhere )
 .head 6 -  Local variables
 .head 6 +  Actions
 .head 7 +  If sOperacao = '11'
-.head 8 -  Return oDBVPESSOAESPEC[nLinha].Insert( hSqlParam )
+.head 8 -  Return oDBVPESSOACLASSE[nLinha].Insert( hSqlParam )
 .head 7 +  Else If sOperacao = '22'
-.head 8 -  Return oDBVPESSOAESPEC[nLinha].Delete( hSqlParam )
+.head 8 -  Return oDBVPESSOACLASSE[nLinha].Delete( hSqlParam )
 .head 7 +  Else If sOperacao = '33'
-.head 8 -  Return oDBVPESSOAESPEC[nLinha].Update( hSqlParam )
+.head 8 -  Return oDBVPESSOACLASSE[nLinha].Update( hSqlParam )
 .head 5 -  ! @ArrayCustomMethodsBegin
 .head 5 -  ! @ArrayCustomMethodsEnd
 .head 2 +  Default Classes

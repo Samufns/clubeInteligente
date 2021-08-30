@@ -10,12 +10,13 @@
 .head 1 -  Outline Version - 4.0.28
 .head 1 +  Design-time Settings
 .data VIEWINFO
-0000: 6F00000001000000 FFFF01000D004347 5458566965775374 6174650400010000
-0020: 00000000001B0100 002C000000020000 0003000000FFFFFF FFFFFFFFFFF8FFFF
+0000: 6F00000001000000 FFFF01000D004347 5458566965775374 6174650400020000
+0020: 0000000000F20000 002C000000020000 0003000000FFFFFF FFFFFFFFFFF8FFFF
 0040: FFE1FFFFFF000000 00000000003C0600 00DE020000010000 0000000000010000
 0060: 000F4170706C6963 6174696F6E497465 6D06000000075769 6E646F7773116672
 0080: 6D43616444657362 72617661646F720D 4368696C64205769 6E646F7773107462
-00A0: 6C45737065636961 6C69646164650743 6F6C756D6E730763 6F6C4E6F6D65
+00A0: 6C45737065636961 6C69646164650946 756E6374696F6E73 13506F70756C6145
+00C0: 7370656369616C69 64616465
 .enddata
 .data DT_MAKERUNDLG
 0000: 0900001000000000 1B443A5C536F6E6E 65725C6664655C44 42565C6462766369
@@ -82,6 +83,9 @@
 .head 2 -  Use Release 4.0 Scope Rules? No
 .head 1 +  Libraries
 .head 2 -  File Include: DbvLib.apl
+.head 2 -  File Include: DBVPESSOA.apl
+.head 2 -  File Include: DBVPESSOACLASSE.apl
+.head 2 -  File Include: DBVPESSOAESPEC.apl
 .head 2 -  File Include: DBVUSUARIO.apl
 .head 2 -  File Include: DBVCLUBE.apl
 .head 2 -  File Include: DBVCLASSE.apl
@@ -233,8 +237,8 @@
 .head 2 +  Internal Functions
 .head 2 -  Named Menus
 .head 2 +  Class Definitions
-.data RESOURCE 0 0 1 1045395460
-0000: 8E08000035040000 0000000000000000 0200001000FFFF01 00160000436C6173
+.data RESOURCE 0 0 1 4088258237
+0000: 5C090000A7040000 0000000000000000 0200001300FFFF01 00160000436C6173
 0020: 73566172004F7574 6C696E6552006567 496E666F5B003C00 000F700063446961
 0040: 6C6F674400656661 756C74D600C00000 0700000043040000 0002F8000000FF6F
 0060: 0400D6040002FE00 FF03080000001900 84000001000000FF FF60210000001900
@@ -246,472 +250,33 @@
 0120: 0000FFFF66190004 00ED0300FF3F0180 661D000300F80B70 63414B6579400000
 0140: F602009619000100 FE00FF9B190004B5 000300FFFF900180 0400000401001066
 0160: 6344424C00697374 614F626A6500746F 7322000000017A00 00046B0007000501
-0180: 8E13000000FF2101 8019000005000000 000C70634D6F0075 7365576865656C04
+0180: CA13000000FF2101 8019000005000000 000C70634D6F0075 7365576865656C04
 01A0: 220000010000006F 1900ED0100FF3F01 8006040006000000 00096663536F756E
-01C0: 640065782A000000 0100BD003AA10001 070000A001002006 0000078001000000
-01E0: FF98018004000721 0011634456550053 554152494F5F5644 657472220000F401
-0200: 0000D6040007EA00 018EFE0063018004 00840800000F6344 01434C5542455F56
-0220: 7F00F001000000D6 040007EA00018EFE 0063018004008009 0000001063440741
-0240: 5353455FFFE00001 000000AD040007D5 00018EFD00C70180 0400000A00000017
-0260: 6344034553504543 4900414C49444144 455FFFE000010000 00AD040007D50001
-0280: 8EFD00C701800400 000B000000166344 FB55F1434C557F00 F001000000D60400
-02A0: 07EA00018EFE0003 01800C000000840C 00000A6663016E4D 657465725EB00000
-02C0: 000300B70400F603 00FFDF04AC000400 03FD00FF37080004 6B000300FFFF0501
-02E0: 9D0000000D000000 000A5F457272006F 72426173658A01D8 00000D005B190001
-0300: FA0000FF6F1900D6 190001FE00FF8332 00000019B5000100 FFFF604B00000019
-0320: 00ED0100FF3F6400 580000040002FB00 FF0F68000000D604 0002FE00FF836C00
-0340: 000004B5000200FF FF60700000000400 ED0300FF3F740058 0000040002FB00FF
-0360: 0F78000000D60400 02FE00FF837C0000 0004B5000300FFFF 628000000400ED03
-0380: 00FF3F8400580000 190001FB00FF8F01 805B01000E000000 076300646B497465
-03A0: 6DDE00D000000700 001B04000102FA00 007F80F20100006F 0400D6040002FE00
-03C0: FF9B080019A50001 0000FFFF66210019 00ED0100FFBF3A59 00040003FB00FF0F
-03E0: 3E000000D6040003 FE00FF8342000000 19B5000100FFFF00 01807D0000000F00
-0400: 0000000D63526164 69186F4C69426F78 609A00000005006F 1900E9010000FFBF
-0420: 195900190001FB00 FF6F3200D6190001 FE00FF9B4B0019B5 000100FFFF666400
-0440: 1900ED0100FF3F
+01C0: 640065782A000000 0100BD003AA10001 070000A001001406 0000078001000000
+01E0: FF98018004000721 0016634456500045 53534F41434C4180 5353455F56657488
+0200: 722200000100DE00 045A00070001DDCA 007F018C80040008 00F0001563440B4F
+0220: 45535045F8435F56 830001000000B704 0056070001CAF700 1F01800403000900
+0240: 0000110C63445553 5541E052494F5F56 0F00010000DE0004 5A00070001DDCA00
+0260: 7F010C8004000A00 0030000F6344434C F05542455F0F0001 0000DE00045A0007
+0280: 0001DDCA007F010C 8004000B0000F000 106344F641451F00 0100BC000004B500
+02A0: 0700BA01CA00FF18 018004000C006000 00176344450E5349 414C49E044414445
+02C0: 5F1F000100BC0000 04B5000700BA01CA 00FF18018004000D 0078000016553F43
+02E0: 4CFE550F00010000 DE00045A00070001 DDCA007F0108800C 00000E000030000A
+0300: 66636E4D00657465 725E000000F60300 D6040003FE00FF9B 040004B5000300FF
+0320: FF6608000400ED03 00FFBF01009D0000 000F000000000A5F 4572726F72420061
+0340: 73658A0100000D7B 00194B00010000FF FFCD190019DA0001 00FF7F32B0000000
+0360: 1900F60100FF1F4B 0000AC00190001FD 00FF076400000004 6B000200FFFFC168
+0380: 00000004DA000200 FF7F6CB000000004 00F60200FF1F7000 00AC00040003FD00
+03A0: FF0774000000046B 000200FFFFC17800 000004DA000200FF 7F7CB00000000400
+03C0: F60300FF5F8000AC 00040003FD00FF07 84000000196B0001 00FFFF3101805B00
+03E0: 1000000000076364 6B490074656DDE00 0000077A00000443 0001020000FF4F80
+0400: 0100FE00CD040004 DA000200FF7F08B3 001900F4010000FF DF21AC00190001FD
+0420: 00FF373A00046B00 0300FFFFC13E0000 0004DA000300FF7F 42B00000001900F6
+0440: 0100FF1F01807D00 000000110000000D 0063526164696F4C 6903426F789A0000
+0460: EC0005002D190001 00FD00FF37190019 6B000100FFFFCD32 0019DA000100FF7F
+0480: 4BB3001900F60100 FFDF64AC00190001 FD00FFC701800480 001200000010638B
+04A0: 5053534FAC5F566F 22D1000100005B04 0007AB0001CAFB00 0F
 .enddata
-.head 3 +  Functional Class: cDBVPESSOA
-.head 4 -  Description:
-.head 4 +  Derived From
-.head 5 -  Class: fcDBObjeto
-.head 4 -  Class Variables
-.head 4 +  Instance Variables
-.head 5 -  Number: nID
-.head 5 -  String: sCPFCGC
-.head 5 -  String: sNOME
-.head 5 -  String: sAPELIDO
-.head 5 -  String: sGENERO
-.head 5 -  Date/Time: dtNASCIMENTO
-.head 5 -  Date/Time: dtCADASTRO
-.head 5 -  String: sEMAIL
-.head 5 -  String: sTELEFONE
-.head 5 -  String: sFOTO
-.head 5 -  String: sTIPOPESSOA
-.head 5 -  String: sSTATUS
-.head 4 +  Functions
-.head 5 +  Function: Initialize
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 7 -  Number: nID_p
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 +  If Not bInitialized Or nID != nID_p
-.head 8 -  Call Reset( )
-.head 8 -  Set nID = nID_p
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam,
-'SELECT id, cpfcgc, left(nome,50), left(email,50) into  :nID,  :sCPFCGC,  :sNOME, :sEMAIL
-From DBVPESSOA
-Where ID = :nID_p' )
-.head 8 +  If SqlFetchNext( hSqlParam, nFetch )
-.head 9 -  Set sCPFCGC = SalStrTrimX( sCPFCGC )
-.head 9 -  Set sNOME = SalStrTrimX( sNOME )
-.head 9 -  Set sAPELIDO = SalStrTrimX( sAPELIDO )
-.head 9 -  Set sGENERO = SalStrTrimX( sGENERO )
-.head 9 -  Set sEMAIL = SalStrTrimX( sEMAIL )
-.head 9 -  Set sTELEFONE = SalStrTrimX( sTELEFONE )
-.head 9 -  Set sFOTO = SalStrTrimX( sFOTO )
-.head 9 -  Set sTIPOPESSOA = SalStrTrimX( sTIPOPESSOA )
-.head 9 -  Set sSTATUS = SalStrTrimX( sSTATUS )
-.head 9 -  Set bInitialized = TRUE
-.head 9 -  Return TRUE
-.head 8 +  Else
-.head 9 -  Set bInitialized = FALSE
-.head 9 -  Return FALSE
-.head 7 +  Else
-.head 8 -  Return TRUE
-.head 5 +  Function: Reset
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 -  Parameters
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  Set nID = NUMBER_Null
-.head 7 -  Set sCPFCGC = STRING_Null
-.head 7 -  Set sNOME = STRING_Null
-.head 7 -  Set sAPELIDO = STRING_Null
-.head 7 -  Set sGENERO = STRING_Null
-.head 7 -  Set dtNASCIMENTO = DATETIME_Null
-.head 7 -  Set dtCADASTRO = DATETIME_Null
-.head 7 -  Set sEMAIL = STRING_Null
-.head 7 -  Set sTELEFONE = STRING_Null
-.head 7 -  Set sFOTO = STRING_Null
-.head 7 -  Set sTIPOPESSOA = STRING_Null
-.head 7 -  Set sSTATUS = STRING_Null
-.head 7 -  Set bInitialized = FALSE
-.head 7 -  Return TRUE
-.head 5 +  Function: Clone
-.head 6 -  Description:
-.head 6 -  Returns
-.head 6 +  Parameters
-.head 7 -  FunctionalVar: oOrigem_p
-.head 8 -  Class: cDBVPESSOA
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  Set nID = oOrigem_p.nID
-.head 7 -  Set sCPFCGC = oOrigem_p.sCPFCGC
-.head 7 -  Set sNOME = oOrigem_p.sNOME
-.head 7 -  Set sAPELIDO = oOrigem_p.sAPELIDO
-.head 7 -  Set sGENERO = oOrigem_p.sGENERO
-.head 7 -  Set dtNASCIMENTO = oOrigem_p.dtNASCIMENTO
-.head 7 -  Set dtCADASTRO = oOrigem_p.dtCADASTRO
-.head 7 -  Set sEMAIL = oOrigem_p.sEMAIL
-.head 7 -  Set sTELEFONE = oOrigem_p.sTELEFONE
-.head 7 -  Set sFOTO = oOrigem_p.sFOTO
-.head 7 -  Set sTIPOPESSOA = oOrigem_p.sTIPOPESSOA
-.head 7 -  Set sSTATUS = oOrigem_p.sSTATUS
-.head 7 -  Set bInitialized = FALSE
-.head 5 +  Function: Insert
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 +  Local variables
-.head 7 -  Boolean: bUpdate
-.head 6 +  Actions
-.head 7 +  If VerificaCampos() And VerificaCamposCustom( )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 +  When SqlError
-.head 9 -  Set bUpdate = TRUE
-.head 9 -  Return FALSE
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into DBVPESSOA
-( ID,  CPFCGC,  NOME,  APELIDO,
-GENERO,  NASCIMENTO,  CADASTRO,  EMAIL,
-TELEFONE,  FOTO,  TIPOPESSOA,  STATUS )
- Values
-( :nID,  :sCPFCGC,  :sNOME,  :sAPELIDO,
-:sGENERO,  :dtNASCIMENTO,  :dtCADASTRO,  :sEMAIL,
-:sTELEFONE,  :sFOTO,  :sTIPOPESSOA,  :sSTATUS ) ' )
-.head 8 +  If bUpdate
-.head 9 -  Call Update( hSqlParam )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Return TRUE
-.head 7 +  Else
-.head 8 -  Return FALSE
-.head 5 +  Function: InsertOrHalt
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 +  If VerificaCampos() And VerificaCamposCustom( )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into DBVPESSOA
-( ID,  CPFCGC,  NOME,  APELIDO,
-GENERO,  NASCIMENTO,  CADASTRO,  EMAIL,
-TELEFONE,  FOTO,  TIPOPESSOA,  STATUS )
- Values
-( :nID,  :sCPFCGC,  :sNOME,  :sAPELIDO,
-:sGENERO,  :dtNASCIMENTO,  :dtCADASTRO,  :sEMAIL,
-:sTELEFONE,  :sFOTO,  :sTIPOPESSOA,  :sSTATUS ) ' )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Return TRUE
-.head 7 +  Else
-.head 8 -  Return FALSE
-.head 5 +  Function: Delete
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 +  If VerificaDependencias() And VerificaDependenciasCustom( hSqlParam )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Delete From DBVPESSOA
-Where ID = :nID' )
-.head 8 -  Call DeleteDependencies( hSqlParam )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Call Reset( )
-.head 8 -  Return TRUE
-.head 7 +  Else
-.head 8 -  Return FALSE
-.head 5 +  Function: Update
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 +  If VerificaCampos() And VerificaCamposCustom( )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Call SqlPrepareAndExecute( hSqlParam, 'Update DBVPESSOA
-Set CPFCGC = :sCPFCGC,
-NOME = :sNOME,
-APELIDO = :sAPELIDO,
-GENERO = :sGENERO,
-NASCIMENTO = :dtNASCIMENTO,
-CADASTRO = :dtCADASTRO,
-EMAIL = :sEMAIL,
-TELEFONE = :sTELEFONE,
-FOTO = :sFOTO,
-TIPOPESSOA = :sTIPOPESSOA,
-STATUS = :sSTATUS
-Where ID = :nID ' )
-.head 8 -  Call SqlSetIsolationLevel( hSqlParam, 'RL' )
-.head 8 -  Return TRUE
-.head 7 +  Else
-.head 8 -  Return FALSE
-.head 5 +  Function: VerificaCampos
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 -  Parameters
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  ! Call oErro.Initialize()
-.head 7 +  If SalStrLength( sCPFCGC  ) > 20
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de CPFCGC excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sNOME  ) > 100
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de NOME excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sAPELIDO  ) > 20
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de APELIDO excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sGENERO  ) > 1
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de GENERO excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sEMAIL  ) > 100
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de EMAIL excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sTELEFONE  ) > 30
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de TELEFONE excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sFOTO  ) > 100
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de FOTO excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sTIPOPESSOA  ) > 1
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de TIPOPESSOA excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 +  If SalStrLength( sSTATUS  ) > 1
-.head 8 -  Call oErro.AddMessage( ERRO_INTEGRIDADE, 'O tamanho de STATUS excede o tamanho permitido.' )
-.head 8 -  Return FALSE
-.head 7 -  Return TRUE
-.head 5 +  Function: GetClassName
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  String:
-.head 6 -  Parameters
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  Return 'cDBVPESSOA'
-.head 5 +  Function: FazOperacaoDB
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 7 -  Number: nOperacao
-.head 6 -  Static Variables
-.head 6 +  Local variables
-.head 7 -  Boolean: bReturn
-.head 6 +  Actions
-.head 7 -  Set bReturn = ExecutaComandoDB( hSqlParam, nOperacao )
-.head 7 -  Return bReturn
-.head 5 +  Function: VerificaDependencias
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 -  Parameters
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  Return TRUE
-.head 5 +  Function: RegistraOperacao
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 7 -  Number: nFuncao
-.head 6 -  Static Variables
-.head 6 +  Local variables
-.head 7 -  Number: nSeqNo
-.head 7 -  Date/Time: dtAtual
-.head 7 -  String: sFuncao
-.head 6 +  Actions
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'ID\', 0, ' || SalNumberToStrX( nID, 7 )  || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'CPFCGC\', 1, ' || sCPFCGC || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'NOME\', 2, ' || sNOME || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'APELIDO\', 3, ' || sAPELIDO || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'GENERO\', 4, ' || sGENERO || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'NASCIMENTO\', 5, ' || SalFmtFormatDateTime( dtNASCIMENTO, 'yyyyMMddhhhhmmss' )  || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'CADASTRO\', 6, ' || SalFmtFormatDateTime( dtCADASTRO, 'yyyyMMddhhhhmmss' )  || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'EMAIL\', 7, ' || sEMAIL || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'TELEFONE\', 8, ' || sTELEFONE || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'FOTO\', 9, ' || sFOTO || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'TIPOPESSOA\', 10, ' || sTIPOPESSOA || '  )'  )
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Insert into SSTLogDetalhe ( SISTEMA, SEQNO, OBJETO, INDICE, VALOR )
- values (:sSistemaGlobal, :nSeqNo, \'STATUS\', 11, ' || sSTATUS || '  )'  )
-.head 7 -  Return TRUE
-.head 5 +  Function: GetMaxID
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Number:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 +  Local variables
-.head 7 -  Number: nMAXID
-.head 6 +  Actions
-.head 7 -  Call SqlPrepareAndExecute( hSqlParam, 'Select MAX(ID) Into :nMAXID From DBVPESSOA' )
-.head 7 -  Call SqlFetchNext( hSqlParam, nFetch )
-.head 7 -  Return isNullNumber(nMAXID,0)
-.head 5 +  Function: GetNextID
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Number:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 +  Local variables
-.head 7 -  Number: nMAXID
-.head 7 -  Number: nMAXIDBloq
-.head 6 +  Actions
-.head 7 -  Set nMAXID = GetMaxID( hSqlParam )
-.head 7 +  If nMAXIDBloq >= nMAXID
-.head 8 -  Return (nMAXIDBloq + 1)
-.head 7 -  Return (nMAXID + 1)
-.head 5 -  ! @CustomMethodsBegin
-.head 5 +  Function: VerificaCamposCustom
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 -  Parameters
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  Return TRUE
-.head 5 +  Function: VerificaDependenciasCustom
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  Return TRUE
-.head 5 +  Function: DeleteDependencies
-.head 6 -  Description:
-.head 6 +  Returns
-.head 7 -  Boolean:
-.head 6 +  Parameters
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 -  Local variables
-.head 6 +  Actions
-.head 7 -  Return TRUE
-.head 5 -  ! @CustomMethodsEnd
-.head 3 +  Functional Class: cDBVPESSOACLASSE
-.head 4 -  Description:
-.head 4 -  Derived From
-.head 4 -  Class Variables
-.head 4 +  Instance Variables
-.head 5 -  Number: nID
-.head 5 -  String: sCPFCGC
-.head 5 -  String: sNOME
-.head 5 -  String: sAPELIDO
-.head 5 -  String: sGENERO
-.head 5 -  Date/Time: dtNASCIMENTO
-.head 5 -  Date/Time: dtCADASTRO
-.head 5 -  String: sEMAIL
-.head 5 -  String: sTELEFONE
-.head 5 -  String: sFOTO
-.head 5 -  String: sTIPOPESSOA
-.head 5 -  String: sSTATUS
-.head 5 -  String: sNOMECLASSE
-.head 5 -  Number: nIDCLASSE
-.head 4 +  Functions
-.head 5 +  Function: PopulaClasse
-.head 6 -  Description:
-.head 6 -  Returns
-.head 6 +  Parameters
-.head 7 -  Number: nID_pc
-.head 7 -  Window Handle: wTBLCLASSE
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 +  Local variables
-.head 7 -  Number: nLinha
-.head 6 +  Actions
-.head 7 -  Call SalTblReset(wTBLCLASSE)
-.head 7 -  Set nLinha = SalTblInsertRow(wTBLCLASSE, TBL_MaxRow)
-.head 7 -  Call SqlPrepareAndExecute(hSql, "SELECT dbvclasse.id, left(dbvclasse.nome, 50) into  :nIDCLASSE, :sNOMECLASSE FROM dbvpessoaclasse join dbvclasse join dbvpessoa WHERE dbvpessoaclasse.idclasse = dbvclasse.id and 
-dbvpessoaclasse.idpessoa = 
-dbvpessoa.id 
-and 
-dbvpessoaclasse.idpessoa = :nID_pc")
-.head 7 +  While SqlFetchNext(hSql, nFetch)
-.head 8 -  Set nLinha = SalTblInsertRow(wTBLCLASSE, TBL_MaxRow)
-.head 7 -  Call SalTblDeleteRow(wTBLCLASSE,nLinha,TBL_NoAdjust)
-.head 3 +  Functional Class: cDBVPESSOAESPEC
-.head 4 -  Description:
-.head 4 -  Derived From
-.head 4 -  Class Variables
-.head 4 +  Instance Variables
-.head 5 -  Number: nID
-.head 5 -  String: sCPFCGC
-.head 5 -  String: sNOME
-.head 5 -  String: sAPELIDO
-.head 5 -  String: sGENERO
-.head 5 -  Date/Time: dtNASCIMENTO
-.head 5 -  Date/Time: dtCADASTRO
-.head 5 -  String: sEMAIL
-.head 5 -  String: sTELEFONE
-.head 5 -  String: sFOTO
-.head 5 -  String: sTIPOPESSOA
-.head 5 -  String: sSTATUS
-.head 5 -  String: sNOMEESPEC
-.head 5 -  Number: nIDESPEC
-.head 5 -  String: sCODIGOESPEC
-.head 4 +  Functions
-.head 5 +  Function: PopulaEspecialidade
-.head 6 -  Description:
-.head 6 -  Returns
-.head 6 +  Parameters
-.head 7 -  Window Handle: wTBLESPEC
-.head 7 -  Number: nID_pc
-.head 7 -  Sql Handle: hSqlParam
-.head 6 -  Static Variables
-.head 6 +  Local variables
-.head 7 -  Number: nLinha
-.head 6 +  Actions
-.head 7 -  Call SalTblReset( wTBLESPEC)
-.head 7 -  Set nLinha = SalTblInsertRow( wTBLESPEC, TBL_MaxRow)
-.head 7 -  Call SqlPrepareAndExecute(hSql, "SELECT  dbvespecialidade.id, left(dbvespecialidade.nome,50), dbvespecialidade.codigo into :nIDESPEC, :sNOMEESPEC, :sCODIGOESPEC FROM dbvpessoaespec join dbvespecialidade join dbvpessoa WHERE 
-dbvpessoaespec.idespecialidade = 
-dbvespecialidade.id and dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespec.idpessoa = :nID_pc")
-.head 7 +  While SqlFetchNext(hSql, nFetch)
-.head 8 -  Set nLinha = SalTblInsertRow( wTBLESPEC, TBL_MaxRow)
-.head 7 -  Call SalTblDeleteRow( wTBLESPEC,nLinha,TBL_NoAdjust)
 .head 2 +  Default Classes
 .head 3 -  MDI Window: cBaseMDI
 .head 3 -  Form Window:
@@ -2094,7 +1659,24 @@ dbvespecialidade.id and dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespe
 .head 8 -  Ignore Case? Class Default
 .head 6 -  List Values
 .head 6 -  Message Actions
-.head 4 -  Functions
+.head 4 +  Functions
+.head 5 +  Function: PopulaEspecialidade
+.head 6 -  Description:
+.head 6 -  Returns
+.head 6 -  Parameters
+.head 6 -  Static Variables
+.head 6 +  Local variables
+.head 7 -  Number: nLinha
+.head 6 +  Actions
+.head 7 -  Call SalTblReset(tblEspecialidade)
+.head 7 -  Set nLinha = SalTblInsertRow(tblEspecialidade ,TBL_MaxRow)
+.head 7 -  Call SqlPrepareAndExecute(hSql,'SELECT left(dbvespecialidade.nome,50), dbvespecialidade.codigo into :colNome, :colCodigo FROM dbvpessoaespec join dbvespecialidade join dbvpessoa WHERE dbvpessoaespec.idespecialidade = 
+dbvespecialidade.id 
+and 
+dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespec.idpessoa = :dfID')
+.head 7 +  While SqlFetchNext(hSql, nFetch)
+.head 8 -  Set nLinha = SalTblInsertRow(tblEspecialidade, TBL_MaxRow)
+.head 7 -  Call SalTblDeleteRow(tblEspecialidade,nLinha, TBL_NoAdjust)
 .head 4 -  Window Variables
 .head 4 -  Message Actions
 .head 3 -  Group Box: Especialidades
@@ -2159,7 +1741,7 @@ dbvespecialidade.id and dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespe
 .head 6 -  Property Template:
 .head 6 -  Class DLL Name:
 .head 6 -  Title: ID
-.head 6 -  Visible? Yes
+.head 6 -  Visible? No
 .head 6 -  Editable? No
 .head 6 -  Maximum Data Length: Default
 .head 6 -  Data Type: Number
@@ -2224,7 +1806,23 @@ dbvespecialidade.id and dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespe
 .head 8 -  Ignore Case? Class Default
 .head 6 -  List Values
 .head 6 -  Message Actions
-.head 4 -  Functions
+.head 4 +  Functions
+.head 5 +  Function: PopulaClasse
+.head 6 -  Description:
+.head 6 -  Returns
+.head 6 -  Parameters
+.head 6 -  Static Variables
+.head 6 +  Local variables
+.head 7 -  Number: nLinha
+.head 6 +  Actions
+.head 7 -  Call SalTblReset(tblClasse)
+.head 7 -  Set nLinha = SalTblInsertRow(tblClasse, TBL_MaxRow)
+.head 7 -  Call SqlPrepareAndExecute(hSql,'SELECT dbvclasse.id, left(dbvclasse.nome,50) into :tblClasse.colID, :tblClasse.colNome FROM `dbvpessoaclasse` join dbvclasse join dbvpessoa WHERE dbvpessoaclasse.idclasse = dbvclasse.id and 
+dbvpessoaclasse.idpessoa = 
+dbvpessoa.id and dbvpessoaclasse.idpessoa = :dfID')
+.head 7 +  While SqlFetchNext(hSql, nFetch)
+.head 8 -  Set nLinha = SalTblInsertRow(tblClasse, TBL_MaxRow)
+.head 7 -  Call SalTblDeleteRow(tblClasse,nLinha, TBL_NoAdjust)
 .head 4 -  Window Variables
 .head 4 -  Message Actions
 .head 3 -  Group Box: Classes
@@ -2550,11 +2148,6 @@ dbvespecialidade.id and dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespe
 .head 5 +  Else
 .head 6 -  Set oPessoa.nID = dfID
 .head 6 -  Set nOperacao = DB_Insert
-.head 5 -  Set oPessoaClasse.nIDCLASSE = tblClasse.colID
-.head 5 -  Set oPessoaClasse.sNOMECLASSE = tblClasse.colNome
-.head 5 -  Set oPessoaEspec.nIDESPEC = tblEspecialidade.colID
-.head 5 -  Set oPessoaEspec.sNOMEESPEC = tblEspecialidade.colNome
-.head 5 -  Set oPessoaEspec.sCODIGOESPEC = tblEspecialidade.colCodigo
 .head 5 -  Call oPessoa.FazOperacaoDB( hSql, DB_Insert )
 .head 3 +  Function: fcOk
 .head 4 -  Description:
@@ -2571,13 +2164,8 @@ dbvespecialidade.id and dbvpessoaespec.idpessoa = dbvpessoa.id and dbvpessoaespe
 .head 6 -  Set dfNome = oPessoa.sNOME
 .head 6 -  Set dfCPF = oPessoa.sCPFCGC
 .head 6 -  Set dfEmail = oPessoa.sEMAIL
-.head 5 +  If oPessoaClasse.PopulaClasse( dfID, tblClasse, hSql)
-.head 6 -  Set tblClasse.colID = oPessoaClasse.nIDCLASSE
-.head 6 -  Set tblClasse.colNome = oPessoaClasse.sNOMECLASSE
-.head 5 +  If oPessoaEspec.PopulaEspecialidade( tblEspecialidade, dfID, hSql)
-.head 6 -  Set tblEspecialidade.colID = oPessoaEspec.nIDESPEC
-.head 6 -  Set tblEspecialidade.colNome = oPessoaEspec.sNOMEESPEC
-.head 6 -  Set tblEspecialidade.colCodigo = oPessoaEspec.sCODIGOESPEC
+.head 6 -  Call tblClasse.PopulaClasse( )
+.head 6 -  Call tblEspecialidade.PopulaEspecialidade( )
 .head 5 -  Call SalSendMsg( hWndForm, PAM_RecordExist, 0, 0 )
 .head 2 -  Window Parameters
 .head 2 +  Window Variables
